@@ -8,36 +8,33 @@ public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long Id;
+	private Long id;
 	private String name;
 	private String email;
-	private String password;
 
 	public UserDTO() {
 	}
 
-	public UserDTO(Long id, String name, String email, String password) {
+	public UserDTO(Long id, String name, String email) {
 		super();
-		Id = id;
+		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = password;
 	}
 
 	public UserDTO(User user) {
 		super();
-		Id = user.getId();
+		id = user.getId();
 		name = user.getName();
 		email = user.getEmail();
-		password = user.getPassword();
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -54,13 +51,5 @@ public class UserDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 }

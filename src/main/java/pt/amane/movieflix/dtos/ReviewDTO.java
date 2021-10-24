@@ -2,7 +2,6 @@ package pt.amane.movieflix.dtos;
 
 import java.io.Serializable;
 
-import pt.amane.movieflix.entities.Movie;
 import pt.amane.movieflix.entities.Review;
 import pt.amane.movieflix.entities.User;
 
@@ -14,19 +13,28 @@ public class ReviewDTO implements Serializable {
 	private String text;
 	private Long movieId;
 
+	private UserDTO user;
+
 	public ReviewDTO() {
 	}
 
-	public ReviewDTO(Long id, String text) {
+	public ReviewDTO(Long id, String text, Long movieId) {
 		super();
 		this.id = id;
 		this.text = text;
+		this.movieId = movieId;
 	}
 
 	public ReviewDTO(Review review) {
 		super();
 		id = review.getId();
 		text = review.getText();
+		movieId = review.getMovie().getId();
+	}
+
+	public ReviewDTO(Review review, User dto) {
+		this(review);
+		user = (new UserDTO(dto));
 	}
 
 	public Long getId() {
@@ -53,4 +61,11 @@ public class ReviewDTO implements Serializable {
 		this.movieId = movieId;
 	}
 
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
 }

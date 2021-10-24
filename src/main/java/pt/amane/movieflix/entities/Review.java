@@ -26,22 +26,22 @@ public class Review implements Serializable {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
-	@JsonIgnore
-	@ManyToOne
 	@JoinColumn(name = "movie_id")
 	private Movie movie;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Review() {
 	}
 
-	public Review(Long id, String text, User user, Movie movie) {
+	public Review(Long id, String text, Movie movie ,User user) {
 		this.id = id;
 		this.text = text;
-		this.user = user;
 		this.movie = movie;
+		this.user = user;
 	}
 
 	public Long getId() {
