@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pt.amane.movieflix.dtos.MovieDTO;
+import pt.amane.movieflix.dtos.MovieDTOByGenre;
 import pt.amane.movieflix.dtos.ReviewDTO;
 import pt.amane.movieflix.entities.Genre;
 import pt.amane.movieflix.entities.Movie;
@@ -43,11 +44,11 @@ public class MovieService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<MovieDTO> findAllPaged(Long genreId, Pageable pageable) {
+	public Page<MovieDTOByGenre> findAllPaged(Long genreId, Pageable pageable) {
 		Genre genre = (genreId == 0) ? null :  genreRepository.getOne(genreId);
 		Page<Movie> page = repository.findAllIdByGenre(genre,pageable);
 		//repository.findMoviesWithGenres(page.getContent());
-		return page.map(x -> new MovieDTO(x));
+		return page.map(x -> new MovieDTOByGenre(x));
 	}
 	
 }

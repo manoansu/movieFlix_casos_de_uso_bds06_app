@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.amane.movieflix.dtos.MovieDTO;
+import pt.amane.movieflix.dtos.MovieDTOByGenre;
 import pt.amane.movieflix.dtos.ReviewDTO;
 import pt.amane.movieflix.services.MovieService;
 
@@ -38,7 +39,7 @@ public class MovieResource {
 	}
 	
 	@GetMapping
-	private ResponseEntity<Page<MovieDTO>> findAll(
+	private ResponseEntity<Page<MovieDTOByGenre>> findAll(
 			@RequestParam(value = "genreId", defaultValue = "0") Long genreId, 
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
@@ -47,7 +48,7 @@ public class MovieResource {
 	
 		PageRequest pageRequest = PageRequest.of(page,linesPerPage, Direction.valueOf(direction), orderby);
 		// PARAMETROS: page, size, sort
-		Page<MovieDTO> list = service.findAllPaged(genreId,pageRequest);
+		Page<MovieDTOByGenre> list = service.findAllPaged(genreId,pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 
