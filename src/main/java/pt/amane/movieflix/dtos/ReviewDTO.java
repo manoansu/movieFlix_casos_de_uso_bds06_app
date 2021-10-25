@@ -2,6 +2,9 @@ package pt.amane.movieflix.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import pt.amane.movieflix.entities.Review;
 import pt.amane.movieflix.entities.User;
 
@@ -10,6 +13,8 @@ public class ReviewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@NotBlank(message = "Field TEXT is required!")
+	@Size(min = 3, max = 60, message = "Field TEXT must have min 3 and max 60 characters!")
 	private String text;
 	private Long movieId;
 

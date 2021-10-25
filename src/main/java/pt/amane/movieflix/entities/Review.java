@@ -93,4 +93,14 @@ public class Review implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
+	public void setMovieId(Long movieId) {
+		this.movie = new Movie();
+		this.movie.setId(movieId);
+	}
+
+	public void setUser(Long id2) {
+		this.user = new User();
+		this.user.setId(id2);
+	}
+
 }
